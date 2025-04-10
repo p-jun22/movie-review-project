@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 가로 중앙 정렬 */
+}
+
+.review-container {
+  width: 100%;
+  max-width: 800px;
+  /* 리뷰 컨테이너 중앙 정렬 */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* 세로 방향으로 배치 */
+  gap: 20px;
+  /* 리뷰 간 간격 */
+}
+
+.comment-container {
+  width: 100%;
+  max-width: 750px;
+  /* 댓글 컨테이너 중앙 정렬 */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* 세로 방향으로 배치 */
+  gap: 20px;
+  /* 댓글 간 간격 */
+}
+
+.review {
+  padding: 20px;
+  background-color: #1f1f1f;
+  border: 1px solid #2f2f2f;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: white;
+  /* 글씨를 흰색으로 설정 */
+  text-decoration: none;
+  /* 밑줄 제거 */
+  display: block;
+  /* 링크를 블록 요소로 변경 */
+}
+
+.movie-title {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.reviewer,
+.commenter {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.comment {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.real-comment {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 30px 5px;
+}
+
+.comment-data {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 30px 5px;
+  color: rgba(240, 248, 255, 0.422);
+}
+
+.comment-hr {
+  border: none;
+  /* 기본 테두리 제거 */
+  height: 1px;
+  /* 선 두께 설정 */
+  background-color: rgba(240, 248, 255, 0.397);
+  /* 선 색상 설정 */
+  margin: 8px 0;
+  /* 상하 여백 설정 */
+}
+
+.write-comment-window {
+  width: 100%;
+  max-width: 750px;
+  /* 댓글 컨테이너 중앙 정렬 */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  /* 세로 방향으로 배치 */
+  gap: 20px;
+  /* 댓글 간 간격 */
+}
+
+.write-comment {
+  margin-left: 33px;
+  outline: none;
+  margin-right: 33px;
+}
+
+.comment-submit {
+  margin-left: 33px;
+  margin-right: 33px;
+  margin-bottom: 50px;
+  height: 30px;
+}
+
+
+.return-button {
+  padding: 8px 16px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.return-button:hover {
+  background-color: #666;
+}

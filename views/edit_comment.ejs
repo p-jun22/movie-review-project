@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>댓글 수정</title>
+  <link rel="stylesheet" href="/detail.css">
+</head>
+<body>
+  <main class="comment-container">
+    <h2>댓글 수정</h2>
+
+    <form action="/comment/edit/<%= comment.comment_id %>" method="POST">
+      <input type="hidden" name="review_id" value="<%= comment.review_id %>">
+
+      <label>작성자 이름:
+        <input type="text" name="username" value="<%= comment.username %>" required>
+      </label><br><br>
+
+      <label>댓글 내용:</label><br>
+      <textarea name="content" rows="4" cols="80" required><%= comment.content %></textarea><br><br>
+
+      <button type="submit">수정 완료</button>
+    </form>
+
+    <a href="/board/<%= comment.review_id %>">
+      <button style="margin-top: 20px;">← 리뷰로 돌아가기</button>
+    </a>
+    
+  </main>
+</body>
+</html>

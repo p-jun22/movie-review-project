@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리뷰 상세</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="review-detail">
+
+  <h1 class="movie-title"><%= review.title %></h1>
+  
+  <p class="reviewer">
+    <%= review.username %>님의 평가 
+    <% for(let i=0; i < review.rating; i++) { %>★<% } %><% for(let i=review.rating; i < 5; i++) { %>☆<% } %>
+    <%= review.rating %>
+  </p>
+  
+  
+  <p class="comment"><%= review.content %></p>
+  
+  <p><strong>줄거리:</strong></p>
+  <p class="comment"><%= review.plot %></p>
+
+  <p class="comment-data"><%= new Date(review.created_at).toLocaleString() %></p>
+  
+  <p>감독: <%= review.director %></p>
+  <p>장르: <%= review.genres %></p>
+  <p>개봉일: <%= review.release_date %></p>
+
+  <div class="button-container">
+    <a href="/board/<%= review.review_id %>/edit">
+      <button class="action-button edit-button">수정</button>
+    </a>
+    
+    <form action="/board/<%= review.review_id %>/delete" method="POST" style="display:inline;">
+      <button class="action-button delete-button" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+    </form>
+  </div>
+
+</div>
+
+<!-- 댓글 영역 -->
+<div class="review-detail">
+
+  <h2>댓글 목록</h2>
+
+  <% if (comments.length === 0) { %>
+    <p>댓글이 없습니다.</p>
+  <% } else { %>
+    <% comments.forEach(comment => { %>
+      <div class="comment">
+        <p><%= comment.username %>: <%= comment.content %></p>
+        <small><%= new Date(comment.created_at).toLocaleString() %></small>
+
+        <div class="button-container">
+          <a href="/comment/edit/<%= comment.comment_id %>">
+            <button class="action-button edit-button">수정</button>
+          </a>
+          <form action="/comment/delete" method="POST" style="display:inline;">
+            <input type="hidden" name="comment_id" value="<%= comment.comment_id %>">
+            <input type="hidden" name="review_id" value="<%= review.review_id %>">
+            <button class="action-button delete-button" onclick="return confirm('댓글을 삭제하시겠습니까?')">삭제</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+
+</div>
+
+<!-- 댓글 작성 폼 -->
+<div class="review-detail comment-form">
+
+  <h2>댓글 작성</h2>
+
+  <form action="/comment/write" method="POST">
+    <input type="hidden" name="review_id" value="<%= review.review_id %>">
+
+    <input type="text" name="username" placeholder="작성자 이름" required><br>
+
+    <textarea name="content" rows="3" placeholder="댓글 내용" required></textarea><br>
+
+    <button type="submit">댓글 작성</button>
+  </form>
+
+</div>
+
+
+<a href="/board">
+  <button class="return-button">홈으로 돌아가기</button>
+</a>
+
+</body>
+</html>

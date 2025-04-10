@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리뷰 수정</title>
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>리뷰 수정</h1>
+    <form action="/board/<%= review.review_id %>/edit" method="POST">
+      <!-- 영화 제목 -->
+      <div class="form-group">
+        <label for="title">영화 제목:</label>
+        <input type="text" id="title" name="title" value="<%= review.title %>" required>
+      </div>
+    
+      <!-- 작성자 이름 -->
+      <div class="form-group">
+        <label for="username">작성자 이름:</label>
+        <input type="text" id="username" name="username" value="<%= review.username %>" required> <!-- 작성자 이름 수정 -->
+      </div>
+    
+      <!-- 별점 -->
+      <div class="form-group rating-group">
+        <label for="rating">별점:</label>
+        <select name="rating" id="rating" required>
+          <option value="5" <%= review.rating == 5 ? 'selected' : '' %>>★★★★★ (5)</option>
+          <option value="4" <%= review.rating == 4 ? 'selected' : '' %>>★★★★☆ (4)</option>
+          <option value="3" <%= review.rating == 3 ? 'selected' : '' %>>★★★☆☆ (3)</option>
+          <option value="2" <%= review.rating == 2 ? 'selected' : '' %>>★★☆☆☆ (2)</option>
+          <option value="1" <%= review.rating == 1 ? 'selected' : '' %>>★☆☆☆☆ (1)</option>
+        </select>
+      </div>
+    
+      <!-- 리뷰 내용 -->
+      <div class="form-group comment-group">
+        <label for="content">내용:</label>
+        <textarea id="content" name="content" rows="10" required><%= review.content %></textarea>
+      </div>
+    
+      <!-- 감독 -->
+      <div class="form-group">
+        <label for="director">감독:</label>
+        <input type="text" id="director" name="director" value="<%= review.director %>" placeholder="정보 없음">
+      </div>
+
+      <!-- 장르 -->
+      <div class="form-group">
+        <label for="genres">장르:</label>
+        <input type="text" id="genres" name="genres" value="<%= review.genres %>" placeholder="정보 없음">
+      </div>
+
+      <!-- 개봉일 -->
+      <div class="form-group">
+        <label for="release_date">개봉일:</label>
+        <input type="date" id="release_date" name="release_date" value="<%= review.release_date %>" placeholder="정보 없음">
+      </div>
+    
+      <!-- 제출 버튼 -->
+      <button type="submit">수정 완료</button>
+    </form>    
+
+    <a href="/board"><button class="return-button">리뷰로 돌아가기</button></a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리뷰 작성</title>
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>리뷰 작성</h1>
+
+    <form action="/board/write" method="POST">
+      <!-- 영화 제목 -->
+      <div class="form-group">
+        <label for="title">영화 제목:</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+
+      <!-- 작성자 이름 -->
+      <div class="form-group">
+        <label for="username">작성자 이름:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+    
+      <!-- 감독 -->
+      <div class="form-group">
+        <label for="director">감독:</label>
+        <input type="text" id="director" name="director" required>
+      </div>
+    
+      <!-- 장르 -->
+      <div class="form-group">
+        <label for="genres">장르:</label>
+        <input type="text" id="genres" name="genres" required>
+      </div>
+    
+      <!-- 개봉일 -->
+      <div class="form-group">
+        <label for="release_date">개봉일:</label>
+        <input type="date" id="release_date" name="release_date" required>
+      </div>
+    
+      <!-- 별점 -->
+      <div class="form-group rating-group">
+        <label for="rating">별점:</label>
+        <select name="rating" id="rating" required>
+          <option value="5">★★★★★ (5)</option>
+          <option value="4">★★★★☆ (4)</option>
+          <option value="3">★★★☆☆ (3)</option>
+          <option value="2">★★☆☆☆ (2)</option>
+          <option value="1">★☆☆☆☆ (1)</option>
+        </select>
+      </div>
+      
+      <!-- 줄거리 -->
+      <div class="form-group">
+        <label for="plot">줄거리:</label>
+        <textarea id="plot" name="plot" rows="5" required></textarea>
+      </div>
+
+      <!-- 리뷰 내용 -->
+      <div class="form-group comment-group">
+        <label for="content">내용:</label>
+        <textarea id="content" name="content" rows="10" required></textarea>
+      </div>
+    
+      <!-- 제출 버튼 -->
+      <button type="submit">작성하기</button>
+    </form>    
+
+    <a href="/board"><button class="return-button">홈으로 돌아가기</button></a>
+  </div>
+</body>
+</html>

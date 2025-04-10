@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>영화/리뷰 검색</title>
+  <link rel="stylesheet" href="/search.css">
+</head>
+<body>
+  <div class="search-wrapper">
+    <!-- 검색창 -->
+    <form class="search-bar" action="/search" method="GET">
+      <input type="text" name="query" id="search-input" placeholder="영화 제목 검색" value="<%= keyword %>" required>
+      <button type="submit" class="search-button">검색</button>
+    </form>
+
+    <a href="/board">
+      <button class="return-button">홈으로 돌아가기</button>
+    </a>
+
+    <!-- 영화 검색 결과 -->
+    <section id="movie-section">
+      <h2>🎬 영화 검색 결과</h2>
+      <div class="card-list">
+        <% if (movies.length === 0) { %>
+          <p>검색된 영화가 없습니다.</p>
+        <% } else { %>
+          <% movies.forEach(movie => { %>
+            <div class="card">
+              <div class="card-content">
+                <h3><%= movie.title %></h3>
+                <p>감독: <%= movie.director || '정보 없음' %></p>
+                <p>장르: <%= movie.genres || '정보 없음' %></p>
+                <p>개봉일: <%= movie.release_date ? movie.release_date.toISOString().split('T')[0] : '정보 없음' %></p>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- 리뷰 검색 결과 -->
+    <section id="review-section">
+      <h2>📝 관련 리뷰</h2>
+      <div class="card-list">
+        <% if (reviews.length === 0) { %>
+          <p>관련 리뷰가 없습니다.</p>
+        <% } else { %>
+          <% reviews.forEach(review => { %>
+            <div class="card">
+              <div class="card-content">
+                <h3><%= review.title %></h3>
+                <p><%= review.username %>님의 평가: <%= review.rating %>점</p>
+                <p><%= review.content %></p>
+                <p><%= new Date(review.created_at).toLocaleString() %></p>
+                <a href="/board/<%= review.review_id %>">→ 리뷰 보러가기</a>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </section>
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>영화 리뷰 게시판</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>영화 리뷰 게시판</h1>
+
+    <!-- ✅ 검색창을 form으로 바꾸고, GET /search 요청 -->
+    <form class="search-bar" action="/search" method="GET">
+      <input type="text" name="query" placeholder="영화 제목 검색" required>
+      <button type="submit" class="search-button">검색</button>
+    </form>
+
+    <button class="write-button" onclick="location.href='/review_form'">리뷰 작성하기</button>
+  </header>
+
+  <main class="review-container">
+    <% if (reviews.length === 0) { %>
+      <p>등록된 리뷰가 없습니다.</p>
+    <% } else { %>
+      <% reviews.forEach(review => { %>
+        <a href="/board/<%= review.review_id %>" class="review">
+          <h2 class="movie-title"><%= review.title %></h2>
+          <p class="reviewer">
+            <%= review.username %>님의 평가 
+            <% for(let i=0; i < review.rating; i++) { %>★<% } %><% for(let i=review.rating; i < 5; i++) { %>☆<% } %>
+            <%= review.rating %>
+          </p>          
+          <p class="comment"><%= review.content %></p>
+        </a>
+      <% }) %>
+    <% } %>
+
+    <div class="pagination">
+
+      <% if(page > 1) { %>
+        <a href="/board?page=1">&laquo;</a>
+        <a href="/board?page=<%= page - 1 %>">&lt;</a>
+      <% } %>
+    
+      <% 
+        let startPage = Math.max(1, page - 2);
+        let endPage = Math.min(totalPages, page + 2);
+    
+        // 페이지가 처음이나 끝 근처일 때 숫자 최대 5개 유지
+        if (page <= 2) {
+          endPage = Math.min(5, totalPages);
+        }
+        if (page >= totalPages - 1) {
+          startPage = Math.max(1, totalPages - 4);
+        }
+      %>
+    
+      <% for(let i = startPage; i <= endPage; i++) { %>
+        <% if(i === page) { %>
+          <span class="current-page"><%= i %></span>
+        <% } else { %>
+          <a href="/board?page=<%= i %>"><%= i %></a>
+        <% } %>
+      <% } %>
+    
+      <% if(page < totalPages) { %>
+        <a href="/board?page=<%= page + 1 %>">&gt;</a>
+        <a href="/board?page=<%= totalPages %>">&raquo;</a>
+      <% } %>
+    
+    </div>
+
+
+
+  </main>
+</body>
+</html>
