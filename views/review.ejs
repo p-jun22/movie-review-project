@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>영화 리뷰 게시판</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="header">
+  <h1>영화 리뷰 게시판</h1>
+
+  <form class="search-bar" action="/search" method="GET">
+    <input type="text" name="query" placeholder="영화 제목 검색" required>
+    <button type="submit" class="search-button">검색</button>
+  </form>
+
+  <form method="GET" action="/board" class="sort-form">
+    <label for="sort">정렬:</label>
+    <select name="sort" id="sort" onchange="this.form.submit()">
+      <option value="newest" <%= sort === 'newest' ? 'selected' : '' %>>최신순</option>
+      <option value="oldest" <%= sort === 'oldest' ? 'selected' : '' %>>오래된 순</option>
+    </select>
+  </form>
+
+  <button class="write-button" onclick="location.href='/review_form'">리뷰 작성하기</button>
+</header>
+
+<main class="review-container">
+  <% if (reviews.length === 0) { %>
+    <p>등록된 리뷰가 없습니다.</p>
+  <% } else { %>
+    <% reviews.forEach(review => { %>
+      <a href="/board/<%= review.review_id %>" class="review">
+        <h2 class="movie-title"><%= review.title %></h2>
+        <p class="reviewer">
+          <%= review.username %>님의 평가 
+          <% for (let i = 0; i < review.rating; i++) { %>★<% } %><% for (let i = review.rating; i < 5; i++) { %>☆<% } %>
+          <%= review.rating %>
+        </p>
+        <p class="comment"><%= review.content %></p>
+        <p class="comment-count">댓글 <%= review.comment_count %>개</p>
+      </a>
+    <% }) %>
+  <% } %>
+
+  <%
+    const current = typeof currentPage !== 'undefined' ? currentPage : page;
+    let startPage = Math.max(1, current - 2);
+    let endPage = Math.min(totalPages, current + 2);
+
+    if (current <= 2) {
+      endPage = Math.min(5, totalPages);
+    }
+    if (current >= totalPages - 1) {
+      startPage = Math.max(1, totalPages - 4);
+    }
+  %>
+
+  <div class="pagination">
+    <% if (current > 1) { %>
+      <a href="/board?page=1<%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">&laquo;</a>
+      <a href="/board?page=<%= current - 1 %><%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">&lt;</a>
+    <% } %>
+
+    <% for (let i = startPage; i <= endPage; i++) { %>
+      <% if (i === current) { %>
+        <span class="current-page"><%= i %></span>
+      <% } else { %>
+        <a href="/board?page=<%= i %><%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>"><%= i %></a>
+      <% } %>
+    <% } %>
+
+    <% if (current < totalPages) { %>
+      <a href="/board?page=<%= current + 1 %><%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">&gt;</a>
+      <a href="/board?page=<%= totalPages %><%= typeof sort !== 'undefined' ? '&sort=' + sort : '' %>">&raquo;</a>
+    <% } %>
+  </div>
+</main>
+
+
+</body>
+</html>

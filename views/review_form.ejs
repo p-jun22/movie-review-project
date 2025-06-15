@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리뷰 작성</title>
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>리뷰 작성</h1>
+
+    <form action="/board/write" method="POST">
+
+      <div class="form-group">
+        <label>영화 제목:</label>
+        <input type="text" name="title" required>
+      </div>
+
+      <div class="form-group">
+        <label>감독:</label>
+        <input type="text" name="director">
+      </div>
+
+      <div class="form-group">
+        <label>장르:</label>
+        <input type="text" name="genres">
+      </div>
+
+      <div class="form-group">
+        <label>개봉일:</label>
+        <input type="date" name="release_date">
+      </div>
+
+      <div class="form-group">
+        <label>줄거리:</label>
+        <textarea name="plot" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>작성자:</label>
+        <input type="text" name="username" required>
+      </div>
+
+      <div class="form-group">
+        <label>비밀번호:</label>
+        <input type="password" name="password" required>
+      </div>
+
+      <div class="form-group">
+        <label>별점:</label>
+        <select name="rating" required>
+          <option value="5">★★★★★ (5)</option>
+          <option value="4">★★★★☆ (4)</option>
+          <option value="3">★★★☆☆ (3)</option>
+          <option value="2">★★☆☆☆ (2)</option>
+          <option value="1">★☆☆☆☆ (1)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>내용:</label>
+        <textarea name="content" rows="10" required></textarea>
+      </div>
+
+      <button type="submit">작성하기</button>
+    </form>
+
+    <a href="/board"><button class="return-button">홈으로</button></a>
+  </div>
+</body>
+</html>

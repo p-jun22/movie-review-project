@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리뷰 삭제</title>
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>리뷰 삭제</h1>
+    <form action="/board/<%= review.review_id %>/delete" method="POST">
+
+      <!-- 비밀번호 입력 필드 추가 -->
+      <div class="form-group">
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+    
+      <!-- 제출 버튼 -->
+      <button type="submit">삭제 완료</button>
+    </form>    
+
+    <a href="/board"><button class="return-button">리뷰로 돌아가기</button></a>
+    <% if (error) { %>
+      <p class="error-message"><%= error %></p>
+    <% } %>
+  </div>
+</body>
+</html>

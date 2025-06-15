@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>리뷰 수정</title>
+  <link rel="stylesheet" href="/form.css">
+</head>
+<body>
+<div class="form-container">
+<h1>리뷰 수정</h1>
+
+<form action="/board/<%= review.review_id %>/edit" method="POST">
+
+  <div class="form-group">
+    <label>영화 제목</label>
+    <input type="text" name="title" value="<%= review.title %>" required>
+  </div>
+
+  <div class="form-group">
+    <label>감독</label>
+    <input type="text" name="director" value="<%= review.director %>">
+  </div>
+
+  <div class="form-group">
+    <label>장르</label>
+    <input type="text" name="genres" value="<%= review.genres %>">
+  </div>
+
+  <div class="form-group">
+    <label>개봉일</label>
+    <input type="date" name="release_date" value="<%= review.release_date ? review.release_date.toISOString().split('T')[0] : '' %>">
+  </div>
+
+  <div class="form-group">
+    <label>줄거리</label>
+    <textarea name="plot" rows="5"><%= review.plot %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>작성자</label>
+    <input type="text" name="username" value="<%= review.username %>" required>
+  </div>
+
+  <div class="form-group">
+    <label>비밀번호</label>
+    <input type="password" name="password" required>
+  </div>
+
+  <div class="form-group">
+    <label>별점</label>
+    <select name="rating" required>
+      <% for(let i=1; i<=5; i++) { %>
+        <option value="<%= i %>" <%= review.rating == i ? 'selected' : '' %>><%= i %></option>
+      <% } %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>내용</label>
+    <textarea name="content" rows="10" required><%= review.content %></textarea>
+  </div>
+
+  <button type="submit">수정 완료</button>
+</form>
+
+<a href="/board/<%= review.review_id %>">
+  <button class="return-button">뒤로가기</button>
+</a>
+
+<% if (error) { %>
+  <p class="error-message"><%= error %></p>
+<% } %>
+
+</div>
+</body>
+</html>
