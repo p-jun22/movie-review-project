@@ -5,6 +5,7 @@ const db = require('../database');
 // 검색 결과 렌더링 (GET /search?query=...)
 router.get('/', async (req, res) => {
   const keyword = req.query.query;
+<<<<<<< HEAD
   const sort = req.query.sort || ''; // 'high' or 'low'
 
   try {
@@ -49,6 +50,27 @@ router.get('/', async (req, res) => {
     res.render('search', {
       keyword,
       sort,
+=======
+
+  try {
+    const [movieResults] = await db.query(`
+      SELECT * FROM Movies
+      WHERE title LIKE ?
+      ORDER BY release_date DESC
+    `, [`%${keyword}%`]);
+
+    const [reviewResults] = await db.query(`
+      SELECT r.review_id, r.content, r.rating, m.title, u.username, r.created_at
+      FROM Reviews r
+      JOIN Movies m ON r.movie_id = m.movie_id
+      JOIN Users u ON r.user_id = u.user_id
+      WHERE m.title LIKE ? OR r.content LIKE ?
+      ORDER BY r.created_at DESC
+    `, [`%${keyword}%`, `%${keyword}%`]);
+
+    res.render('search', {
+      keyword,
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
       movies: movieResults,
       reviews: reviewResults
     });
@@ -58,4 +80,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186

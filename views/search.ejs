@@ -7,6 +7,7 @@
 </head>
 <body>
   <div class="search-wrapper">
+<<<<<<< HEAD
     <div class="search-top-bar">
             <!-- 홈 버튼 -->
             <a href="/board">
@@ -18,6 +19,17 @@
         <button type="submit" class="search-button">검색</button>
       </form>
     </div>
+=======
+    <!-- 검색창 -->
+    <form class="search-bar" action="/search" method="GET">
+      <input type="text" name="query" id="search-input" placeholder="영화 제목 검색" value="<%= keyword %>" required>
+      <button type="submit" class="search-button">검색</button>
+    </form>
+
+    <a href="/board">
+      <button class="return-button">홈으로 돌아가기</button>
+    </a>
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
 
     <!-- 영화 검색 결과 -->
     <section id="movie-section">
@@ -30,12 +42,15 @@
             <div class="card">
               <div class="card-content">
                 <h3><%= movie.title %></h3>
+<<<<<<< HEAD
                 <!--영화 평점-->
                 <% if (movie.average_rating != null && movie.average_rating !== undefined && typeof movie.average_rating === 'number') { %>
                   <p><b>평균 평점: <%= movie.average_rating.toFixed(1) %></b></p>
                 <% } else { %>
                   <p><b>평점 정보 없음</b></p>
                 <% } %>
+=======
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
                 <p>감독: <%= movie.director || '정보 없음' %></p>
                 <p>장르: <%= movie.genres || '정보 없음' %></p>
                 <p>개봉일: <%= movie.release_date ? movie.release_date.toISOString().split('T')[0] : '정보 없음' %></p>
@@ -46,6 +61,7 @@
       </div>
     </section>
 
+<<<<<<< HEAD
 
     <!-- 리뷰 검색 결과 -->
 <section id="review-section">
@@ -90,3 +106,31 @@
 
 </body>
 </html>
+=======
+    <!-- 리뷰 검색 결과 -->
+    <section id="review-section">
+      <h2>📝 관련 리뷰</h2>
+      <div class="card-list">
+        <% if (reviews.length === 0) { %>
+          <p>관련 리뷰가 없습니다.</p>
+        <% } else { %>
+          <% reviews.forEach(review => { %>
+            <div class="card">
+              <div class="card-content">
+                <h3><%= review.title %></h3>
+                <p><%= review.username %>님의 평가: <%= review.rating %>점</p>
+                <p><%= review.content %></p>
+                <p><%= new Date(review.created_at).toLocaleString() %></p>
+                <a href="/board/<%= review.review_id %>">→ 리뷰 보러가기</a>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </section>
+  </div>
+
+
+</body>
+</html>
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186

@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 
+=======
+/* form.css */
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -12,13 +16,20 @@ body {
 
 .form-container {
   width: 100%;
+<<<<<<< HEAD
   max-width: 600px;
+=======
+  max-width: 600px; /* 중앙 정렬 및 최대 너비 */
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
   background-color: #1f1f1f;
   padding: 20px;
   margin: 40px auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+<<<<<<< HEAD
   overflow-x: hidden; /* 부모보다 튀어나오는거 방지 */
+=======
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
 }
 
 h1 {
@@ -33,6 +44,7 @@ h1 {
 label {
   display: block;
   margin-bottom: 5px;
+<<<<<<< HEAD
   font-weight: bold;  /* 강조 */
 }
 
@@ -40,6 +52,11 @@ input[type="text"],
 input[type="password"],
 select,
 textarea {
+=======
+}
+
+input[type="text"], select, textarea {
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
   width: 100%;
   padding: 10px;
   background-color: #2a2a2a;
@@ -47,6 +64,7 @@ textarea {
   border: 1px solid #444;
   border-radius: 5px;
   outline: none;
+<<<<<<< HEAD
   margin-top: 5px; /* input 위 레이블과 간격 */
 }
 
@@ -54,6 +72,11 @@ input[type="text"]:focus,
 input[type="password"]:focus,
 select:focus,
 textarea:focus {
+=======
+}
+
+input[type="text"]:focus, select:focus, textarea:focus {
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
   border-color: #007bff;
 }
 
@@ -71,7 +94,10 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+<<<<<<< HEAD
   transition: 0.2s; /* 부드러운 hover */
+=======
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
 }
 
 button:hover {

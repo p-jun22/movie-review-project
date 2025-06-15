@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>댓글 수정</title>
+<<<<<<< HEAD
   <link rel="stylesheet" href="/form.css">
 </head>
 <body>
@@ -33,10 +34,29 @@
       </div>
 
       <!-- 제출 버튼 -->
+=======
+  <link rel="stylesheet" href="/detail.css">
+</head>
+<body>
+  <main class="comment-container">
+    <h2>댓글 수정</h2>
+
+    <form action="/comment/edit/<%= comment.comment_id %>" method="POST">
+      <input type="hidden" name="review_id" value="<%= comment.review_id %>">
+
+      <label>작성자 이름:
+        <input type="text" name="username" value="<%= comment.username %>" required>
+      </label><br><br>
+
+      <label>댓글 내용:</label><br>
+      <textarea name="content" rows="4" cols="80" required><%= comment.content %></textarea><br><br>
+
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
       <button type="submit">수정 완료</button>
     </form>
 
     <a href="/board/<%= comment.review_id %>">
+<<<<<<< HEAD
       <button class="return-button">리뷰로 돌아가기</button>
     </a>
 
@@ -44,5 +64,11 @@
       <p class="error-message"><%= error %></p>
     <% } %>
   </div>
+=======
+      <button style="margin-top: 20px;">← 리뷰로 돌아가기</button>
+    </a>
+    
+  </main>
+>>>>>>> 86e7cc393d1416aaf28b66fb1e3dae7c6038e186
 </body>
 </html>
